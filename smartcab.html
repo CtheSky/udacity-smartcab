@@ -16803,7 +16803,14 @@ What decaying function was used for epsilon (the exploration factor)?</p>
 </ul>
 <p>How much improvement was made with this Q-Learner when compared to the default Q-Learner from the previous section?</p>
 <ul>
-<li>Safety rating goes from F to A+.</li>
+<li>Safety rating goes from F to A+.<ul>
+<li>num of bad actions goes from 0.16 to about 0.04</li>
+<li>num of violations goes from 0.14 to about 0.06</li>
+<li>num of accidents goes from 0.065 to about 0.015</li>
+</ul>
+</li>
+<li>Average Reward per action goes from -1.7 to about 1   </li>
+<li>Reliability goes from 50% to about 80%</li>
 </ul>
 <p>Would you say that the Q-Learner results show that your driving agent successfully learned an appropriate policy?</p>
 <ul>
@@ -16843,7 +16850,7 @@ What decaying function was used for epsilon (the exploration factor)?</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong><br>
-My state content is (waypoint, inputs[light], inputs[left], inputs[oncoming]). There are so many states in the log file and I randomly pick 10 state and they all has the optimal policy. I will take 2 example and explain why it is the optimal policy:</p>
+My state content is (waypoint, inputs[light], inputs[left], inputs[oncoming]). There are many states in the log file and most of they have the optimal policy. I will take one optimal and one bad example to explain:</p>
 <p>State:</p>
 <ul>
 <li>('right', 'green', 'forward', 'right')  </li>
@@ -16857,24 +16864,26 @@ My state content is (waypoint, inputs[light], inputs[left], inputs[oncoming]). T
 </ul>
 <p>Whether action is optimal:</p>
 <ul>
+<li>Yes</li>
 <li>smartcab wants to go right and light is green</li>
 <li>it chooses to turn right which is the optimal action</li>
 </ul>
 <p>State:</p>
 <ul>
-<li>('left', 'red', 'right', 'left')</li>
+<li>('right', 'red', 'forward', 'left')</li>
 </ul>
 <p>Reward:</p>
 <ul>
-<li>forward : -7.87</li>
-<li>right : 0.07</li>
-<li><strong>None</strong> : 2.17</li>
-<li>left : -30.04</li>
+<li>forward : -9.69</li>
+<li><strong>right</strong> : 2.46</li>
+<li>None : 1.16</li>
+<li>left : -14.45</li>
 </ul>
 <p>Whether action is optimal:</p>
 <ul>
-<li>smartcab wants to go left and light is red</li>
-<li>it chooses to stay which is the optimal action</li>
+<li>No</li>
+<li>smartcab wants to go right and light is red</li>
+<li>the left car wants to go forward, so smartcab should choose stay but it chooses to turn right, which is not optimal</li>
 </ul>
 
 </div>
